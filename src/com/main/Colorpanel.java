@@ -49,35 +49,41 @@ public class Colorpanel extends JDialog implements ActionListener{
         
         selects[0]=new ColorChoose("BACKGROUND_COLOR",p.getProperty("BACKGROUND_COLOR"));
         selects[0].setBounds(10,r,350,50);
+        selects[0].textvalue.setEnabled(false);
         pan.add(selects[0]);
 		
         r+=60;
 		
 		selects[1]=new ColorChoose("PANEL_COLOR",p.getProperty("PANEL_COLOR"));
 		selects[1].setBounds(10,r,350,50);
+		selects[1].textvalue.setEnabled(false);
 		pan.add(selects[1]);
 		
 		r+=60;
 		
 		selects[2]=new ColorChoose("LINE_COLOR",p.getProperty("LINE_COLOR"));
 		selects[2].setBounds(10,r,350,50);
+		selects[2].textvalue.setEnabled(false);
 		pan.add(selects[2]);
 		
 		r+=60;
 		
 		selects[3]=new ColorChoose("LINE_2_COLOR",p.getProperty("LINE_2_COLOR"));
 		selects[3].setBounds(10,r,350,50);
+		selects[3].textvalue.setEnabled(false);
 		pan.add(selects[3]);
 		r+=60;
 		
 		selects[4]=new ColorChoose("AXIS_COLOR",p.getProperty("AXIS_COLOR"));
 		selects[4].setBounds(10,r,350,50);
+		selects[4].textvalue.setEnabled(false);
 		pan.add(selects[4]);
 		
 		r+=60;
 		
 		selects[5]=new ColorChoose("LINE_3D_COLOR",p.getProperty("LINE_3D_COLOR"));
 		selects[5].setBounds(10,r,350,50);
+		selects[5].textvalue.setEnabled(false);
 		pan.add(selects[5]);
 		
 		

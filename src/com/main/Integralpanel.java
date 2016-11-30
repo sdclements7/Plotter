@@ -9,6 +9,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -110,17 +111,20 @@ public class Integralpanel extends JDialog implements ActionListener{
 	 */
 	private void calculateIntegral(Calculator calc2) {
 		double val=0;
-		if(types.isSelected())
-			val=AdvancedCalculator.SimpsonIntegral(calc2);
-		else if(typet.isSelected())
-			val=AdvancedCalculator.trapeziumIntegral(calc2);
-		else if(typeg.isSelected())
-			val=AdvancedCalculator.gaussIntegral(calc2);
-
-		displayedA.setText(""+calc2.a);
-		displayedB.setText(""+calc2.b);
-
-        
+		
+		if(calc2.b >= calc2.a){
+			if(types.isSelected())
+				val=AdvancedCalculator.SimpsonIntegral(calc2);
+			else if(typet.isSelected())
+				val=AdvancedCalculator.trapeziumIntegral(calc2);
+			else if(typeg.isSelected())
+				val=AdvancedCalculator.gaussIntegral(calc2);
+			displayedA.setText(""+calc2.a);
+			displayedB.setText(""+calc2.b);
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Lower bound must be less than upper bound.");
+		}
 		result.setText(""+df.format(val));
 		
 	}

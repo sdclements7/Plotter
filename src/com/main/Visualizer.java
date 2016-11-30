@@ -799,12 +799,11 @@ public class Visualizer extends JFrame implements ActionListener,KeyListener,
 
 	private void saveImage() {
 		
-		
 		fc.setDialogType(JFileChooser.SAVE_DIALOG);
 		if(currentDirectory!=null)
 			fc.setCurrentDirectory(currentDirectory);
 		
-		int returnVal = fc.showOpenDialog(this);
+		int returnVal = fc.showSaveDialog(this);
 		
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			

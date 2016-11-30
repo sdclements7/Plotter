@@ -93,15 +93,9 @@ public class ExportDataPanel extends JDialog implements ActionListener{
 						
 						filePath.setText(file.getAbsolutePath());
 								
-					} 
-					
+					} 					
 				}
-
-
-
-			
 			}	
-				
 		);
 		
 		r+=30;
@@ -142,12 +136,8 @@ public class ExportDataPanel extends JDialog implements ActionListener{
         
         add(pan);
         
-        setVisible(true);
-        
+        setVisible(true);        
 	}
-
-
-
 
 	private void init() {
 		
@@ -155,39 +145,29 @@ public class ExportDataPanel extends JDialog implements ActionListener{
 		d_separator="\n";
 	}
 
-
-
-
-	
-	
-	
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
 		Object obj = arg0.getSource();
 		
 		if(obj==save){
-			
-			save();
+			try{
+				save();
+			}
+			finally{
+				exit();
+			}
 		}
 		else if(obj==exit){
 			
 			exit();
-		}
-		
+		}		
 	}
-
-
-
 
 	private void exit() {
 		dispose();
 		
 	}
-
-
-
 
 	private void save() {
 
@@ -208,7 +188,6 @@ public class ExportDataPanel extends JDialog implements ActionListener{
 			
 			if(filePath.getText()==null || filePath.getText().equals(""))
 			{	
-			
 				String msg="Missing file path!";
 				JOptionPane.showMessageDialog(this,msg,"Error",JOptionPane.ERROR_MESSAGE);
 			    
@@ -224,10 +203,9 @@ public class ExportDataPanel extends JDialog implements ActionListener{
 				for(int i=0;i<fun.length;i++){
 					
 					String str=decomposeFunction(fun[i]);
-					pw.print(str);
-					
+					pw.print(str);	
 				}
-				
+				JOptionPane.showMessageDialog(this, "Data saved");
 			}
 			else if(function instanceof double[][][]){
 				
@@ -244,6 +222,7 @@ public class ExportDataPanel extends JDialog implements ActionListener{
 						pw.print(str);
 					}
 				}
+				JOptionPane.showMessageDialog(this, "Data saved");
 			}
 			
 		}catch (Exception e) {
@@ -255,26 +234,16 @@ public class ExportDataPanel extends JDialog implements ActionListener{
 		finally{
 			if(pw!=null)
 				pw.close();
-		}
-		
-		
-		
+		}		
 	}
-
-
-
 
 	private String decomposeFunction3D(double[] data) {
 		return data[0]+v_separator+data+v_separator+data[1]+v_separator+data[2]+d_separator;
 		
 	}
 
-
-
-
 	private String decomposeFunction(double[] data) {
 		
 		return data[0]+v_separator+data[1]+d_separator;
 	}
-
 }
