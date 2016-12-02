@@ -21,51 +21,49 @@ public class AdvancedCalculator {
 	
 	}
 	
-	public static double SimpsonIntegral(Calculator calc){
-		
-		double total=0;
-		
-		double x1=calc.a;
-		double x2=calc.b;
-		
-		int num=1000;
-		
-		double dx=(x2-x1)/num;
-		double dx_6=dx/6.0;
-		
-		for(double x=x1;x<x2;x=x+dx){
-		
-		  //total+=dx*(calc.f(x)+calc.f(x+dx)+4*calc.f((x*2+dx)/2.0))/6.0;
-		 total+=calc.f(x)+calc.f(x+dx)+4*calc.f((x*2+dx)*0.5);
+	public static double SimpsonIntegral(Calculator calc) {
+
+		double x1 = calc.a;
+		double x2 = calc.b;
+		double total = (calc.f(x1) + calc.f(x2));
+
+		int num = 1000;
+
+		double dx = (x2 - x1) / num;
+
+		for (double i = 2; i < num - 1; i+=2) {
+			double x = x1 + dx * i;
+			total += 2.0 * calc.f(x);
 		}
-		
-		
-		return total*dx_6;
-	
+		for (double i = 1; i < num; i+=2) {
+			double x = x1 + dx * i;
+			total += 4.0 * calc.f(x);
+		}
+		return total * dx / 3.0;
+
 	}
 	
 	
-	public static double trapeziumIntegral(Calculator calc){
-		
-		double total=0;
-		
-		double x1=calc.a;
-		double x2=calc.b;
-		
-		int num=1000;
-		
-		double dx=(x2-x1)/num;
-		double dx_2=dx/2;
-		
-		for(double x=x1;x<x2;x=x+dx){
-		
-		  //total+=dx*(calc.f(x+dx)-calc.f(x-dx))/2;	
-			total+=(calc.f(x+dx)+calc.f(x));
+	public static double trapeziumIntegral(Calculator calc) {
+
+		double x1 = calc.a;
+		double x2 = calc.b;
+		double total = 0.5 * (calc.f(x1) + calc.f(x2));
+
+		int num = 1000;
+
+		double dx = (x2 - x1) / num;
+
+		for (double i = 1; i < num; i++) {
+
+			// total+=dx*(calc.f(x+dx)-calc.f(x-dx))/2;
+			// total+=(calc.f(x+dx)+calc.f(x));
+			double x = x1 + dx * i;
+			total = total + calc.f(x);
 		}
-		
-		
-		return total*dx_2;
-	
+
+		return total * dx;
+
 	}
 
 	public static double gaussIntegral(Calculator calc) {
